@@ -1,1 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wishlist</title>
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+</head>
+<body>
+  <h1>Wishlist</h1>
+  <pre id="output">Načítání...</pre>
+
+  <script>
+    fetch('wishlist.md')
+      .then(response => {
+        if (!response.ok) throw new Error('Chyba při načítání wishlist.md');
+        return response.text();
+      })
+      .then(text => {
+        const data = jsyaml.load(text);
+        document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+      })
+      .catch(error => {
+        document.getElementById('output').textContent = 'Chyba: ' + error.message;
+      });
+  </script>
+</body>
+</html>
 
