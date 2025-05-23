@@ -10,7 +10,7 @@
   <pre id="output">Načítání...</pre>
 
   <script>
-    fetch('wishlist.md')
+    fetch('wishlist.yaml')
       .then(response => {
         if (!response.ok) throw new Error('Chyba při načítání wishlist.md');
         return response.text();
